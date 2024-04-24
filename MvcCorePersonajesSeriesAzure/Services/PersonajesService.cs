@@ -50,19 +50,25 @@ namespace MvcCorePersonajesSeriesAzure.Services
             return await this.CallApiAsync<List<string>>(request);
         }
 
-        public async Task<PersonajesSeries> FindPersonajeById(int id)
+        public async Task<List<PersonajesSeries>> GetPersonajesSeriesAsync(string serie)
+        {
+            string request = "api/Personajes/PersonajesSeries/" + serie;
+            return await this.CallApiAsync<List<PersonajesSeries>>(request);
+        }
+
+        public async Task<PersonajesSeries> FindPersonajeByIdAsync(int id)
         {
             string request = "api/Personajes/" + id;
             return await this.CallApiAsync<PersonajesSeries>(request);
         }
 
-        public async Task<List<PersonajesSeries>> GetSeries(string serie)
+        public async Task<List<PersonajesSeries>> GetSeriesAsync(string serie)
         {
             string request = "api/Personajes/" + serie;
             return await this.CallApiAsync<List<PersonajesSeries>>(request);
         }
 
-        public async Task InsertPersonaje(PersonajesSeries personaje)
+        public async Task InsertPersonajeAsync(PersonajesSeries personaje)
         {
             string request = "api/Personajes/InsertPersonaje";
 
@@ -79,7 +85,7 @@ namespace MvcCorePersonajesSeriesAzure.Services
             }
         }
 
-        public async Task UpdatePersonaje(PersonajesSeries personaje)
+        public async Task UpdatePersonajeAsync(PersonajesSeries personaje)
         {
             string request = "api/Personajes/UpdatePersonaje";
             using (HttpClient client = new HttpClient())
@@ -95,9 +101,9 @@ namespace MvcCorePersonajesSeriesAzure.Services
             }
         }
 
-        public async Task DeletePersonaje(int id)
+        public async Task DeletePersonajeAsync(int id)
         {
-            string request = "api/Personajes/DeletePersonaje" + id;
+            string request = "api/Personajes/DeletePersonaje/" + id;
 
             using (HttpClient client = new HttpClient())
             {

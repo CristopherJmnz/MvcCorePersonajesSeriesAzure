@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MvcCorePersonajesSeriesAzure.Models.PersonajesSeries>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if (Model != null)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPersonaje)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Serie)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPersonaje)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        <img src="@item.Imagen" width="150" height="100" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Serie)
+                    </td>
+                    <td>
+                        <a class="btn btn-dark"
+                            asp-action="Details"
+                            asp-controller="Personajes"
+                            asp-route-idpersonaje="@item.IdPersonaje">DETAILS</a>
+                        <a class="btn btn-warning"
+                            asp-action="Edit"
+                            asp-controller="Personajes"
+                            asp-route-idpersonaje="@item.IdPersonaje">UPDATE</a>
+                        <a class="btn btn-danger"
+                            asp-action="Delete"
+                            asp-controller="Personajes"
+                            asp-route-idpersonaje="@item.IdPersonaje">DELETE</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>NO HAY PERSONAJES</p>
+}
